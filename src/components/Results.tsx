@@ -1,5 +1,5 @@
-import type { ResultProps } from "../../interfaces/dataDefinitions"
-import ResultSpan from "./ResultSpan";
+import type { ResultProps } from "../interfaces/dataDefinitions"
+import ResultSpan from "../ui/Results/ResultSpan";
 
 export default function Results({ age }: ResultProps) {
     return (

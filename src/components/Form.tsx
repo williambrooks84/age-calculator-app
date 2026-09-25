@@ -1,8 +1,8 @@
 import { useState } from "react";
-import type { FormProps } from "../../interfaces/dataDefinitions";
-import FormLabel from "./FormLabel";
-import FormInput from "./FormInput";
-import iconArrow from "../../assets/icon-arrow.svg";
+import type {FormProps} from "../interfaces/dataDefinitions"
+import iconArrow from "../assets/icon-arrow.svg";
+import FormLabel from "../ui/Form/FormLabel";
+import FormInput from "../ui/Form/FormInput";
 
 export default function Form({ onValidSubmit }: FormProps) {
     const [day, setDay] = useState("");

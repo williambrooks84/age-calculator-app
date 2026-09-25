@@ -1,5 +1,5 @@
-import Form from "../ui/Form/Form"
-import Results from "../ui/Results/Results";
+import Form from "./Form";
+import Results from "./Results";
 import { useState } from "react";
 
 export default function Card() {
@@ -56,7 +56,7 @@ export default function Card() {
     }
 
     return (
-        <div className="w-full flex flex-col md:w-1/2 m-3 md:m-0 px-5 py-15 md:p-15 bg-white rounded-3xl rounded-br-[10rem]">
+        <div className="w-full flex flex-col lg:w-1/2 m-3 lg:m-0 px-5 py-15 md:p-15 bg-white rounded-3xl rounded-br-[10rem]">
             <Form onValidSubmit={handleValidSubmit} />
             <Results age={age} />
         </div>
