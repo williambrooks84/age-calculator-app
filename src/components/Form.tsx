@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type {FormProps} from "../interfaces/dataDefinitions"
+import type { FormProps } from "../interfaces/dataDefinitions"
 import iconArrow from "../assets/icon-arrow.svg";
 import FormLabel from "../ui/Form/FormLabel";
 import FormInput from "../ui/Form/FormInput";
@@ -152,63 +152,86 @@ export default function Form({ onValidSubmit }: FormProps) {
             <fieldset>
                 <div className="grid grid-cols-3 xl:grid-cols-4 gap-5 lg:gap-10">
                     <div className="flex flex-col gap-2">
-                        <FormLabel labelName="Day" className={`${submitted && isDayError()
+                        <FormLabel id="day" labelName="Day" className={`${submitted && isDayError()
                             ? "text-red-400"
                             : "text-grey-500"
                             }`} />
                         <FormInput
+                            id="day"
                             placeholder="DD"
                             value={day}
                             onChange={(e) => setDay(e.target.value)}
+                            aria-invalid={submitted && isDayError()}
+                            aria-describedby={submitted && dayErrorMessage ? "day-error" : undefined}
                             className={`${submitted && isDayError()
                                 ? "border-red-400"
                                 : "border-grey-200 focus:border-purple-500"
                                 }`}
                         />
-                        <p className="text-red-400 text-sm">{(submitted && dayErrorMessage) ?? ""}</p>
+                        {submitted && dayErrorMessage && (
+                            <p id="day-error" className="text-red-400 text-sm">
+                                {dayErrorMessage}
+                            </p>
+                        )}
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <FormLabel labelName="Month" className={`${submitted && (isMonthError() || isInvalidDate())
+                        <FormLabel id="month" labelName="Month" className={`${submitted && (isMonthError() || isInvalidDate())
                             ? "text-red-400"
                             : "text-grey-500"
                             }`} />
                         <FormInput
+                            id="month"
                             placeholder="MM"
                             value={month}
                             onChange={(e) => setMonth(e.target.value)}
+                            aria-invalid={submitted && isMonthError()}
+                            aria-describedby={submitted && monthErrorMessage ? "month-error" : undefined}
                             className={`${submitted && (isMonthError() || isInvalidDate())
                                 ? "border-red-400"
                                 : "border-grey-200 focus:border-purple-500"
                                 }`}
                         />
-                        <p className="text-red-400 text-sm">{(submitted && monthErrorMessage) ?? ""}</p>
+                        {submitted && monthErrorMessage && (
+                            <p id="month-error" className="text-red-400 text-sm">
+                                {monthErrorMessage}
+                            </p>
+                        )}
                     </div>
 
                     <div className="flex flex-col gap-2">
-                        <FormLabel labelName="Year" className={`${submitted && (isYearError() || isInvalidDate())
+                        <FormLabel id="year" labelName="Year" className={`${submitted && (isYearError() || isInvalidDate())
                             ? "text-red-400"
                             : "text-grey-500"
                             }`} />
                         <FormInput
+                            id="year"
                             placeholder="YYYY"
                             value={year}
                             onChange={(e) => setYear(e.target.value)}
+                            aria-invalid={submitted && isYearError()}
+                            aria-describedby={submitted && yearErrorMessage ? "year-error" : undefined}
                             className={`${submitted && (isYearError() || isInvalidDate())
                                 ? "border-red-400"
                                 : "border-grey-200 focus:border-purple-500"
                                 }`}
                         />
-                        <p className="text-red-400 text-sm">{(submitted && yearErrorMessage) ?? ""}</p>
+
+                        {submitted && yearErrorMessage && (
+                            <p id="year-error" className="text-red-400 text-sm">
+                                {yearErrorMessage}
+                            </p>
+                        )}
                     </div>
                 </div>
             </fieldset>
 
             <div className="relative flex items-center pt-20 pb-20 xl:py-0">
-                <hr className="flex-1 border-grey-200" />
+                <hr aria-hidden="true" className="flex-1 border-grey-200" />
 
                 <button
                     type="submit"
+                    aria-label="Calculate age"
                     className="absolute left-1/2 -translate-x-1/2 rounded-full p-5
                    bg-gray-500 hover:bg-purple-500 focus:bg-purple-500 outline-none
                    xl:static xl:translate-x-0"
